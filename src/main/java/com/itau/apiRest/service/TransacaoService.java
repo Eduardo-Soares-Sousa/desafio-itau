@@ -2,6 +2,7 @@ package com.itau.apiRest.service;
 
 import com.itau.apiRest.exceptions.UnprocessableException;
 import com.itau.apiRest.model.Transacao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class TransacaoService {
     private List<Transacao> listaTransacoes = new ArrayList<>();
 
@@ -24,5 +26,12 @@ public class TransacaoService {
 
     public void deletarTransacoes() {
         listaTransacoes.clear();
+    }
+
+    public List<Transacao> buscarUltimasTransacoes() {
+        OffsetDateTime limite = OffsetDateTime.now().minusSeconds(60);
+        return listaTransacoes.stream()
+                .filter(transacao -> transacao.getDataHora()
+                        .isAfter(limite)).toList();
     }
 }
