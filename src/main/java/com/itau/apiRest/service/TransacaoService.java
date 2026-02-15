@@ -22,4 +22,7 @@ public class TransacaoService {
         listaTransacoes.add(transacao);
     }
 
+    public void deletarTransacoes() {
+        listaTransacoes.clear();
+    }
 }
