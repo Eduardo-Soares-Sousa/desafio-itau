@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/estatisticas")
 public class EstatisticasController {
-    private EstatisticasService estatisticasService;
+    private final EstatisticasService estatisticasService;
 
     @GetMapping
     @Operation(description = "Endpoint responsável por calcular os dados das estatísticas")

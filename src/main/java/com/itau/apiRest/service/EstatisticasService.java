@@ -19,6 +19,10 @@ public class EstatisticasService {
         log.info("Iniciando processo de calcular estatísticas");
         List<Transacao> transacaoList = transacaoService.buscarUltimasTransacoes();
 
+        if(transacaoList.isEmpty()) {
+            return new Estatisticas(0.0, 0.0, 0.0, 0.0, 0.0);
+        }
+
         log.info("Calculando e mapeando valores para Double");
         DoubleSummaryStatistics estatisticas = transacaoList.stream()
                 .mapToDouble(Transacao::getValor).summaryStatistics();
