@@ -2,6 +2,7 @@ package com.itau.apiRest.controller;
 
 import com.itau.apiRest.model.Transacao;
 import com.itau.apiRest.service.TransacaoService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class TransacaoController {
     private final TransacaoService transacaoService;
 
     @PostMapping
+    @Operation(description = "Endpoint responsável por salvar transação")
     @ApiResponse(responseCode = "201", description = "A transação foi aceita")
     @ApiResponse(responseCode = "422", description = "Transação não foi aceita - os campos não atendem os requisitos")
     @ApiResponse(responseCode = "400", description = "Erro de requisição")
@@ -29,6 +31,7 @@ public class TransacaoController {
     }
 
     @DeleteMapping
+    @Operation(description = "Endpoint responsável por apagar todas as transações")
     @ApiResponse(responseCode = "200", description = "Transações deletadas com sucesso")
     public ResponseEntity<Void> deletarTransacoes() {
         transacaoService.deletarTransacoes();
